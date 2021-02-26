@@ -1,59 +1,61 @@
 import '../styles/main.scss';
 
-const printToDom = (divId, string) => {
-  const selectedDiv = document.querySelector(divId);
-  selectedDiv.innerHTML = string;
+import printToDom from './helpers/printToDom';
+
+const full = {
+  name: 'Eat',
+  startingValue: 100,
+  buttonOneName: 'Healthy Food',
+  buttonOneId: 'healthyFood',
+  buttonOne: 10,
+  buttonTwoName: 'Unhealthy Food',
+  buttonTwoId: 'unhealthyFood',
+  buttonTwo: -3,
+};
+const fun = {
+  name: 'Play',
+  startingValue: 50,
+  buttonOneName: 'Super Fun Activity',
+  buttonOneId: 'superFunActivity',
+  buttonOne: 50,
+  buttonTwoName: 'Fun Activity',
+  buttonTwoId: 'funActivity',
+  buttonTwo: 2,
+};
+const strength = {
+  name: 'Strength',
+  startingValue: 100,
+  buttonOneName: 'Run Away',
+  buttonOneId: 'runAway',
+  buttonOne: 1,
+  buttonTwoName: 'Commit Violence',
+  buttonTwoId: 'commitViolence',
+  buttonTwo: -10,
+};
+const energy = {
+  name: 'Sleep',
+  startingValue: 50,
+  buttonOneName: 'Nap',
+  buttonOneId: 'nap',
+  buttonOne: 50,
+  buttonTwoName: 'Deep Sleep',
+  buttonTwoId: 'deepSleep',
+  buttonTwo: 60,
 };
 
-const quadValues = [
-  {
-    name: 'Eat',
-    startingValue: 100,
-    buttonOne: 10,
-    buttonOneName: 'Healthy Food',
-    buttonTwo: -3,
-    buttonTwoName: 'Unhealthy Food'
-  },
-  {
-    name: 'Play',
-    startingValue: 50,
-    buttonOne: 50,
-    buttonOneName: 'Super Fun Activity',
-    buttonTwo: 2,
-    buttonTwoName: 'Fun Activity'
-  },
-  {
-    name: 'Strength',
-    startingValue: 100,
-    buttonOne: 1,
-    buttonOneName: 'Run Away',
-    buttonTwo: -10,
-    buttonTwoName: 'Commit Violence'
-  },
-  {
-    name: 'Sleep',
-    startingValue: 50,
-    buttonOne: 50,
-    buttonOneName: 'Nap',
-    buttonTwo: 60,
-    buttonTwoName: 'Deep Sleep'
-  },
-];
-
-const quadPrinter = (quadArray) => {
-  let quadString = '';
-
-  quadArray.forEach((quad) => {
-    quadString = `<div class="card" style="width: 18rem;">
+const quadPrinter = (quad, divId) => {
+  const cardstring = `<div class="card" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="${quad.name}"></h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <h5 class="card-title">${quad.name}</h5>
+    <p class="card-text">${quad.startingValue}</p>
+    <button class="btn btn-primary" id="${quad.buttonOneId}">${quad.buttonOneName}</button>
+    <button class="btn btn-primary" id="${quad.buttonTwoId}">${quad.buttonTwoName}</button>
   </div>
-  </div>`;
-  });
-
-  printToDom(quadString, '#progress');
+</div>`;
+  printToDom(cardstring, divId);
 };
 
-quadPrinter(quadValues);
+quadPrinter(full, '#eat');
+quadPrinter(fun, '#play');
+quadPrinter(strength, '#fight');
+quadPrinter(energy, '#sleep');
