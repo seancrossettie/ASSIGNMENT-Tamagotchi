@@ -1,6 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
+@import './eat.scss';
+@import './fight.scss';
+@import './sleep.scss';
+@import './play.scss';
+
 body {
   background-color: antiquewhite;
   color: brown;
