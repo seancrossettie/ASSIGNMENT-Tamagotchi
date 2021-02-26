@@ -55,7 +55,26 @@ const quadPrinter = (quad, divId) => {
   printToDom(cardstring, divId);
 };
 
+const buttonOneFunction = () => {
+  console.warn('Button One Function');
+};
+
+const buttonTwoFunction = () => {
+  console.warn('This is too');
+};
+
+const buttonEvents = (quad) => {
+  document.querySelector(`#${quad.buttonOneId}`).addEventListener('click', buttonOneFunction);
+  document.querySelector(`#${quad.buttonTwoId}`).addEventListener('click', buttonTwoFunction);
+};
+
 quadPrinter(full, '#eat');
 quadPrinter(fun, '#play');
 quadPrinter(strength, '#fight');
 quadPrinter(energy, '#sleep');
+
+const init = () => {
+  buttonEvents(full);
+};
+
+init();
