@@ -57,15 +57,17 @@ const quadPrinter = (quad, divId) => {
 
 const buttonOneFunction = () => {
   console.warn('Button One Function');
+  // let startingValue = quad.startingValue;
+  // startingValue += quad.buttonOne;
 };
 
-const buttonTwoFunction = () => {
-  console.warn('This is too');
-};
+// const buttonTwoFunction = (quad) => {
+//   console.warn('This is too');
+// };
 
 const buttonEvents = (quad) => {
   document.querySelector(`#${quad.buttonOneId}`).addEventListener('click', buttonOneFunction);
-  document.querySelector(`#${quad.buttonTwoId}`).addEventListener('click', buttonTwoFunction);
+  // document.querySelector(`#${quad.buttonTwoId}`).addEventListener('click', buttonTwoFunction(quad, divId));
 };
 
 quadPrinter(full, '#eat');
