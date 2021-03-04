@@ -17,6 +17,12 @@ const domBuilder = () => {
                                                   <button id="run-away" class="btn btn-primary" type="button">Run Away</button>
                                                   <button id="commit-violence" class="btn btn-primary" type="button">Commit Violence</button>
                                                 </div>`;
+  document.querySelector('#sleep').innerHTML = `<h4>Sleep</h4>
+                                                <h6 id='sleepScore' class="mt-4"></h6>
+                                                <div class="d-grid gap-2 d-md-block mt-4">
+                                                  <button id="nap" class="btn btn-primary" type="button">Nap</button>
+                                                  <button id="deep-sleep" class="btn btn-primary" type="button">Deep Sleep</button>
+                                                </div>`;
 };
 
 export default domBuilder;
