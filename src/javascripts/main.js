@@ -1,61 +1,103 @@
 import '../styles/main.scss';
+import domBuilder from './components/domBuilder';
 
-import printToDom from './helpers/printToDom';
+let full = 100;
+let fun = 50;
+let strength = 100;
+let energy = 50;
 
-const full = {
-  name: 'Eat',
-  startingValue: 100,
-  buttonOneName: 'Healthy Food',
-  buttonOneId: 'healthyFood',
-  buttonOne: 10,
-  buttonTwoName: 'Unhealthy Food',
-  buttonTwoId: 'unhealthyFood',
-  buttonTwo: -3,
-};
-const fun = {
-  name: 'Play',
-  startingValue: 50,
-  buttonOneName: 'Super Fun Activity',
-  buttonOneId: 'superFunActivity',
-  buttonOne: 50,
-  buttonTwoName: 'Fun Activity',
-  buttonTwoId: 'funActivity',
-  buttonTwo: 2,
-};
-const strength = {
-  name: 'Strength',
-  startingValue: 100,
-  buttonOneName: 'Run Away',
-  buttonOneId: 'runAway',
-  buttonOne: 1,
-  buttonTwoName: 'Commit Violence',
-  buttonTwoId: 'commitViolence',
-  buttonTwo: -10,
-};
-const energy = {
-  name: 'Sleep',
-  startingValue: 50,
-  buttonOneName: 'Nap',
-  buttonOneId: 'nap',
-  buttonOne: 50,
-  buttonTwoName: 'Deep Sleep',
-  buttonTwoId: 'deepSleep',
-  buttonTwo: 60,
+const printScore = () => {
+  document.querySelector('#fullScore').innerHTML = full;
+  document.querySelector('#funScore').innerHTML = fun;
+  document.querySelector('#fightScore').innerHTML = strength;
+  document.querySelector('#sleepScore').innerHTML = energy;
 };
 
-const quadPrinter = (quad, divId) => {
-  const cardstring = `<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">${quad.name}</h5>
-    <p class="card-text">${quad.startingValue}</p>
-    <button class="btn btn-primary" id="${quad.buttonOneId}">${quad.buttonOneName}</button>
-    <button class="btn btn-primary" id="${quad.buttonTwoId}">${quad.buttonTwoName}</button>
-  </div>
-</div>`;
-  printToDom(cardstring, divId);
+const foodEvent = (e) => {
+  const targetId = e.target.id;
+  if (targetId === 'healthy-food') {
+    if (full + 10 < 100) {
+      full += 10;
+      printScore();
+    } else if (full + 10 > 100) {
+      full = 100;
+      printScore();
+    }
+  } else if (targetId === 'unhealthy-food') {
+    full -= 3;
+    printScore();
+  }
 };
 
-quadPrinter(full, '#eat');
-quadPrinter(fun, '#play');
-quadPrinter(strength, '#fight');
-quadPrinter(energy, '#sleep');
+const funEvent = (e) => {
+  const targetId = e.target.id;
+  if (targetId === 'fun-activity') {
+    if (fun + 2 < 100) {
+      fun += 2;
+      printScore();
+    } else if (fun + 2 > 100) {
+      fun = 100;
+      printScore();
+    }
+  } else if (targetId === 'super-fun-activity') {
+    if (fun + 50 < 100) {
+      fun += 50;
+      printScore();
+    } else if (fun + 50 > 100) {
+      fun = 100;
+      printScore();
+    }
+  }
+};
+
+const fightEvent = (e) => {
+  const targetId = e.target.id;
+  if (targetId === 'run-away') {
+    if (strength + 1 < 100) {
+      strength += 1;
+      printScore();
+    } else if (strength + 1 >= 100) {
+      strength = 100;
+      printScore();
+    }
+  } else if (targetId === 'commit-violence') {
+    strength -= 10;
+    printScore();
+  }
+};
+
+const sleepEvent = (e) => {
+  const targetId = e.target.id;
+  if (targetId === 'nap') {
+    if (energy + 50 <= 100) {
+      energy += 50;
+      printScore();
+    } else if (energy + 50 >= 100) {
+      energy = 100;
+      printScore();
+    }
+  } else if (targetId === 'deep-sleep') {
+    if (energy + 60 <= 100) {
+      energy += 60;
+      printScore();
+    } else if (energy + 60 >= 100) {
+      energy = 100;
+      printScore();
+    }
+  }
+};
+
+const buttonEvents = () => {
+  document.querySelector('#healthy-food').addEventListener('click', foodEvent);
+  document.querySelector('#unhealthy-food').addEventListener('click', foodEvent);
+  document.querySelector('#fun-activity').addEventListener('click', funEvent);
+  document.querySelector('#super-fun-activity').addEventListener('click', funEvent);
+  document.querySelector('#run-away').addEventListener('click', fightEvent);
+  document.querySelector('#commit-violence').addEventListener('click', fightEvent);
+  document.querySelector('#nap').addEventListener('click', sleepEvent);
+  document.querySelector('#deep-sleep').addEventListener('click', sleepEvent);
+};
+
+domBuilder();
+buttonEvents();
+printScore();
