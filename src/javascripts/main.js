@@ -1,82 +1,33 @@
 import '../styles/main.scss';
+import domBuilder from './components/domBuilder';
 
-import printToDom from './helpers/printToDom';
+let full = 100;
 
-const full = {
-  name: 'Eat',
-  startingValue: 100,
-  buttonOneName: 'Healthy Food',
-  buttonOneId: 'healthyFood',
-  buttonOne: 10,
-  buttonTwoName: 'Unhealthy Food',
-  buttonTwoId: 'unhealthyFood',
-  buttonTwo: -3,
-};
-const fun = {
-  name: 'Play',
-  startingValue: 50,
-  buttonOneName: 'Super Fun Activity',
-  buttonOneId: 'superFunActivity',
-  buttonOne: 50,
-  buttonTwoName: 'Fun Activity',
-  buttonTwoId: 'funActivity',
-  buttonTwo: 2,
-};
-const strength = {
-  name: 'Strength',
-  startingValue: 100,
-  buttonOneName: 'Run Away',
-  buttonOneId: 'runAway',
-  buttonOne: 1,
-  buttonTwoName: 'Commit Violence',
-  buttonTwoId: 'commitViolence',
-  buttonTwo: -10,
-};
-const energy = {
-  name: 'Sleep',
-  startingValue: 50,
-  buttonOneName: 'Nap',
-  buttonOneId: 'nap',
-  buttonOne: 50,
-  buttonTwoName: 'Deep Sleep',
-  buttonTwoId: 'deepSleep',
-  buttonTwo: 60,
+const printScore = () => {
+  document.querySelector('#fullScore').innerHTML = full;
 };
 
-const quadPrinter = (quad, divId) => {
-  const cardstring = `<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">${quad.name}</h5>
-    <p class="card-text">${quad.startingValue}</p>
-    <button class="btn btn-primary" id="${quad.buttonOneId}">${quad.buttonOneName}</button>
-    <button class="btn btn-primary" id="${quad.buttonTwoId}">${quad.buttonTwoName}</button>
-  </div>
-</div>`;
-  printToDom(cardstring, divId);
+const foodEvent = (e) => {
+  const targetId = e.target.id;
+  if (targetId === 'healthy-food') {
+    if (full + 10 < 100) {
+      full += 10;
+      printScore();
+    } else if (full + 10 > 100) {
+      full = 100;
+      printScore();
+    }
+  } else if (targetId === 'unhealthy-food') {
+    full -= 3;
+    printScore();
+  }
 };
 
-const buttonOneFunction = () => {
-  console.warn('Button One Function');
-  // let startingValue = quad.startingValue;
-  // startingValue += quad.buttonOne;
+const buttonEvents = () => {
+  document.querySelector('#healthy-food').addEventListener('click', foodEvent);
+  document.querySelector('#unhealthy-food').addEventListener('click', foodEvent);
 };
 
-// const buttonTwoFunction = (quad) => {
-//   console.warn('This is too');
-// };
-
-const buttonEvents = (quad) => {
-  document.querySelector(`#${quad.buttonOneId}`).addEventListener('click', buttonOneFunction);
-  // document.querySelector(`#${quad.buttonTwoId}`).addEventListener('click', buttonTwoFunction(quad, divId));
-};
-
-quadPrinter(full, '#eat');
-quadPrinter(fun, '#play');
-quadPrinter(strength, '#fight');
-quadPrinter(energy, '#sleep');
-
-const init = () => {
-  buttonEvents(full);
-};
-
-init();
+domBuilder();
+buttonEvents();
+printScore();
