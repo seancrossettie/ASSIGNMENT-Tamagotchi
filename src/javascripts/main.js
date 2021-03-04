@@ -87,6 +87,11 @@ const sleepEvent = (e) => {
   }
 };
 
+const sleepCounter = () => {
+  energy -= 3;
+  printScore();
+};
+
 const buttonEvents = () => {
   document.querySelector('#healthy-food').addEventListener('click', foodEvent);
   document.querySelector('#unhealthy-food').addEventListener('click', foodEvent);
@@ -101,3 +106,4 @@ const buttonEvents = () => {
 domBuilder();
 buttonEvents();
 printScore();
+setInterval(sleepCounter, 2000);
