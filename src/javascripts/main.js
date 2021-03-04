@@ -4,11 +4,13 @@ import domBuilder from './components/domBuilder';
 let full = 100;
 let fun = 50;
 let strength = 100;
+let energy = 50;
 
 const printScore = () => {
   document.querySelector('#fullScore').innerHTML = full;
   document.querySelector('#funScore').innerHTML = fun;
   document.querySelector('#fightScore').innerHTML = strength;
+  document.querySelector('#sleepScore').innerHTML = energy;
 };
 
 const foodEvent = (e) => {
@@ -64,6 +66,27 @@ const fightEvent = (e) => {
   }
 };
 
+const sleepEvent = (e) => {
+  const targetId = e.target.id;
+  if (targetId === 'nap') {
+    if (energy + 50 <= 100) {
+      energy += 50;
+      printScore();
+    } else if (energy + 50 >= 100) {
+      energy = 100;
+      printScore();
+    }
+  } else if (targetId === 'deep-sleep') {
+    if (energy + 60 <= 100) {
+      energy += 60;
+      printScore();
+    } else if (energy + 60 >= 100) {
+      energy = 100;
+      printScore();
+    }
+  }
+};
+
 const buttonEvents = () => {
   document.querySelector('#healthy-food').addEventListener('click', foodEvent);
   document.querySelector('#unhealthy-food').addEventListener('click', foodEvent);
@@ -71,6 +94,8 @@ const buttonEvents = () => {
   document.querySelector('#super-fun-activity').addEventListener('click', funEvent);
   document.querySelector('#run-away').addEventListener('click', fightEvent);
   document.querySelector('#commit-violence').addEventListener('click', fightEvent);
+  document.querySelector('#nap').addEventListener('click', sleepEvent);
+  document.querySelector('#deep-sleep').addEventListener('click', sleepEvent);
 };
 
 domBuilder();
