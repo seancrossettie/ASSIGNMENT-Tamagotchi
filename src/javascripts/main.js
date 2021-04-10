@@ -88,8 +88,12 @@ const sleepEvent = (e) => {
 };
 
 const sleepCounter = () => {
-  energy -= 1;
-  printScore();
+  if (energy > 0) {
+    energy -= 1;
+    printScore();
+  } else if (energy < 0) {
+    energy = 0;
+  }
 };
 
 const buttonEvents = () => {
