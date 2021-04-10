@@ -8,11 +8,22 @@
 
 body {
   display: flex;
-  flex-wrap: wrap;
-  
-  .quad {
-    #eat {
-      background-color: #EC4E20;
-    }
-  }
+}
+
+#fight {
+  position: static;
+  top: 0;
+  left: 0;
+}
+
+#sleep {
+  position: static;
+  bottom: 0;
+  left: 0;
+}
+
+#play {
+  position: static;
+  top: 0;
+  right: 0;
 }
