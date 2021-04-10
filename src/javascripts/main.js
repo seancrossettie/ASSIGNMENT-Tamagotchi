@@ -105,6 +105,10 @@ const buttonEvents = () => {
   document.querySelector('#deep-sleep').addEventListener('click', sleepEvent);
 };
 
-domBuilder();
-buttonEvents();
-printScore();
+const init = () => {
+  domBuilder();
+  buttonEvents();
+  printScore();
+};
+
+init();

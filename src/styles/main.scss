@@ -7,9 +7,27 @@
 @import './play.scss';
 
 body {
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  text-align: center;
-  margin-top: 100px;
+  display: flex;
+}
+
+#eat {
+
+}
+
+#fight {
+  position: static;
+  top: 0;
+  left: 0;
+}
+
+#sleep {
+  position: static;
+  bottom: 0;
+  left: 0;
+}
+
+#play {
+  position: static;
+  top: 0;
+  right: 0;
 }
